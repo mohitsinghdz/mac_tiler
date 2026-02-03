@@ -1,0 +1,465 @@
+{
+  "builtTestProducts" : [
+
+  ],
+  "copyCommands" : {
+
+  },
+  "explicitTargetDependencyImportCheckingMode" : {
+    "none" : {
+
+    }
+  },
+  "generatedSourceTargetSet" : [
+
+  ],
+  "pluginDescriptions" : [
+
+  ],
+  "swiftCommands" : {
+    "C.NiriMacOS-arm64-apple-macosx15.0-release.module" : {
+      "executable" : "/Library/Developer/CommandLineTools/usr/bin/swiftc",
+      "fileList" : "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/NiriMacOS.build/sources",
+      "importPath" : "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Animation/AnimationEngine.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Animation/Spring.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/App/main.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Input/GestureHandler.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Input/ScanningMode.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Input/SwipeTracker.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Layout/Column.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Layout/LayoutEngine.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Layout/ScrollingPositioner.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Layout/ScrollingSpace.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Layout/ViewOffset.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Window/Window.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Window/WindowCache.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Window/WindowController.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Window/WindowObserver.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/swift-version--1AB21518FC5DEDBE.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/NiriMacOS.build/sources"
+        }
+      ],
+      "isLibrary" : false,
+      "moduleName" : "NiriMacOS",
+      "moduleOutputPath" : "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/Modules/NiriMacOS.swiftmodule",
+      "objects" : [
+        "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/NiriMacOS.build/AnimationEngine.swift.o",
+        "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/NiriMacOS.build/Spring.swift.o",
+        "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/NiriMacOS.build/main.swift.o",
+        "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/NiriMacOS.build/GestureHandler.swift.o",
+        "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/NiriMacOS.build/ScanningMode.swift.o",
+        "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/NiriMacOS.build/SwipeTracker.swift.o",
+        "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/NiriMacOS.build/Column.swift.o",
+        "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/NiriMacOS.build/LayoutEngine.swift.o",
+        "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/NiriMacOS.build/ScrollingPositioner.swift.o",
+        "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/NiriMacOS.build/ScrollingSpace.swift.o",
+        "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/NiriMacOS.build/ViewOffset.swift.o",
+        "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/NiriMacOS.build/Window.swift.o",
+        "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/NiriMacOS.build/WindowCache.swift.o",
+        "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/NiriMacOS.build/WindowController.swift.o",
+        "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/NiriMacOS.build/WindowObserver.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx13.0",
+        "-O",
+        "-j12",
+        "-DSWIFT_PACKAGE",
+        "-module-cache-path",
+        "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/ModuleCache",
+        "-parseable-output",
+        "-Xfrontend",
+        "-entry-point-function-name",
+        "-Xfrontend",
+        "NiriMacOS_main",
+        "-swift-version",
+        "5",
+        "-F",
+        "/Library/Developer/CommandLineTools/Library/Developer/Frameworks",
+        "-sdk",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk",
+        "-g",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-package-name",
+        "nirimacos"
+      ],
+      "outputFileMapPath" : "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/NiriMacOS.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/NiriMacOS.build/AnimationEngine.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/NiriMacOS.build/Spring.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/NiriMacOS.build/main.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/NiriMacOS.build/GestureHandler.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/NiriMacOS.build/ScanningMode.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/NiriMacOS.build/SwipeTracker.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/NiriMacOS.build/Column.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/NiriMacOS.build/LayoutEngine.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/NiriMacOS.build/ScrollingPositioner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/NiriMacOS.build/ScrollingSpace.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/NiriMacOS.build/ViewOffset.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/NiriMacOS.build/Window.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/NiriMacOS.build/WindowCache.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/NiriMacOS.build/WindowController.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/NiriMacOS.build/WindowObserver.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/Modules/NiriMacOS.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Animation/AnimationEngine.swift",
+        "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Animation/Spring.swift",
+        "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/App/main.swift",
+        "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Input/GestureHandler.swift",
+        "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Input/ScanningMode.swift",
+        "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Input/SwipeTracker.swift",
+        "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Layout/Column.swift",
+        "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Layout/LayoutEngine.swift",
+        "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Layout/ScrollingPositioner.swift",
+        "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Layout/ScrollingSpace.swift",
+        "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Layout/ViewOffset.swift",
+        "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Window/Window.swift",
+        "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Window/WindowCache.swift",
+        "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Window/WindowController.swift",
+        "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Window/WindowObserver.swift"
+      ],
+      "tempsPath" : "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/NiriMacOS.build",
+      "wholeModuleOptimization" : true
+    }
+  },
+  "swiftFrontendCommands" : {
+
+  },
+  "swiftTargetScanArgs" : {
+    "NiriMacOS" : [
+      "/Library/Developer/CommandLineTools/usr/bin/swiftc",
+      "-module-name",
+      "NiriMacOS",
+      "-package-name",
+      "nirimacos",
+      "-whole-module-optimization",
+      "-num-threads",
+      "12",
+      "-c",
+      "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Animation/AnimationEngine.swift",
+      "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Animation/Spring.swift",
+      "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/App/main.swift",
+      "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Input/GestureHandler.swift",
+      "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Input/ScanningMode.swift",
+      "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Input/SwipeTracker.swift",
+      "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Layout/Column.swift",
+      "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Layout/LayoutEngine.swift",
+      "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Layout/ScrollingPositioner.swift",
+      "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Layout/ScrollingSpace.swift",
+      "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Layout/ViewOffset.swift",
+      "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Window/Window.swift",
+      "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Window/WindowCache.swift",
+      "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Window/WindowController.swift",
+      "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Window/WindowObserver.swift",
+      "-I",
+      "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/Modules",
+      "-target",
+      "arm64-apple-macosx13.0",
+      "-O",
+      "-j12",
+      "-DSWIFT_PACKAGE",
+      "-module-cache-path",
+      "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/ModuleCache",
+      "-parseable-output",
+      "-Xfrontend",
+      "-entry-point-function-name",
+      "-Xfrontend",
+      "NiriMacOS_main",
+      "-swift-version",
+      "5",
+      "-F",
+      "/Library/Developer/CommandLineTools/Library/Developer/Frameworks",
+      "-sdk",
+      "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk",
+      "-g",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-package-name",
+      "nirimacos",
+      "-driver-use-frontend-path",
+      "/Library/Developer/CommandLineTools/usr/bin/swiftc"
+    ]
+  },
+  "targetDependencyMap" : {
+    "NiriMacOS" : [
+
+    ]
+  },
+  "testDiscoveryCommands" : {
+
+  },
+  "testEntryPointCommands" : {
+
+  },
+  "writeCommands" : {
+    "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/NiriMacOS.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Animation/AnimationEngine.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Animation/Spring.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/App/main.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Input/GestureHandler.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Input/ScanningMode.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Input/SwipeTracker.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Layout/Column.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Layout/LayoutEngine.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Layout/ScrollingPositioner.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Layout/ScrollingSpace.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Layout/ViewOffset.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Window/Window.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Window/WindowCache.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Window/WindowController.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Window/WindowObserver.swift"
+        }
+      ],
+      "outputFilePath" : "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/NiriMacOS.build/sources"
+    },
+    "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/NiriMacOS.product/Objects.LinkFileList" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<link-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/NiriMacOS.build/AnimationEngine.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/NiriMacOS.build/Column.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/NiriMacOS.build/GestureHandler.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/NiriMacOS.build/LayoutEngine.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/NiriMacOS.build/ScanningMode.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/NiriMacOS.build/ScrollingPositioner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/NiriMacOS.build/ScrollingSpace.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/NiriMacOS.build/Spring.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/NiriMacOS.build/SwipeTracker.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/NiriMacOS.build/ViewOffset.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/NiriMacOS.build/Window.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/NiriMacOS.build/WindowCache.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/NiriMacOS.build/WindowController.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/NiriMacOS.build/WindowObserver.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/NiriMacOS.build/main.swift.o"
+        }
+      ],
+      "outputFilePath" : "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/NiriMacOS.product/Objects.LinkFileList"
+    },
+    "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/swift-version--1AB21518FC5DEDBE.txt" : {
+      "alwaysOutOfDate" : true,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<swift-get-version>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Library/Developer/CommandLineTools/usr/bin/swiftc"
+        }
+      ],
+      "outputFilePath" : "/Users/mohitsingh/Work/niri/NiriMacOS/.build/arm64-apple-macosx/release/swift-version--1AB21518FC5DEDBE.txt"
+    }
+  }
+}

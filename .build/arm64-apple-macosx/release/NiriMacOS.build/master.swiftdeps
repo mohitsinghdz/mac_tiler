@@ -1,0 +1,20 @@
+version: "Apple Swift version 6.0.3 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)"
+options: "b7f5fc33815992cbfda0969718e6db909cf8e984f7f50029c6c3f0a461d47412"
+build_start_time: [1770087444, 486124000]
+build_end_time: [1770087445, 810649000]
+inputs:
+  "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Animation/AnimationEngine.swift": [1770082316, 687416960]
+  "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Animation/Spring.swift": [1770076594, 393411112]
+  "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/App/main.swift": [1770082403, 387732983]
+  "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Input/GestureHandler.swift": [1770082379, 562453254]
+  "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Input/ScanningMode.swift": [1770082721, 513612868]
+  "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Input/SwipeTracker.swift": [1770076602, 674689254]
+  "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Layout/Column.swift": [1770075337, 629913981]
+  "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Layout/LayoutEngine.swift": [1770082393, 751017019]
+  "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Layout/ScrollingPositioner.swift": [1770079398, 200545918]
+  "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Layout/ScrollingSpace.swift": [1770087423, 273611985]
+  "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Layout/ViewOffset.swift": [1770082256, 303237925]
+  "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Window/Window.swift": [1770081075, 33632748]
+  "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Window/WindowCache.swift": [1770087414, 410284614]
+  "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Window/WindowController.swift": [1770085758, 158328953]
+  "/Users/mohitsingh/Work/niri/NiriMacOS/Sources/Window/WindowObserver.swift": [1770076069, 316991736]
