@@ -1,10 +1,11 @@
 import Cocoa
+import CoreGraphics
 
 /// Handles touchpad and mouse gestures
 class GestureHandler {
     private weak var layoutEngine: LayoutEngine?
-    private var gestureMonitor: Any?
-    private var localEventMonitor: Any?
+    private var eventTap: CFMachPort?
+    private var runLoopSource: CFRunLoopSource?
 
     /// Reference to scanning mode controller for checking mode
     weak var scanningModeController: ScanningModeController?
@@ -14,67 +15,82 @@ class GestureHandler {
     }
 
     func setupGestureMonitoring() {
-        // Monitor global scroll wheel events
-        gestureMonitor = NSEvent.addGlobalMonitorForEvents(matching: .scrollWheel) { [weak self] event in
-            self?.handleScrollEvent(event)
+        // Create event tap to intercept AND block scroll events when in scanning mode
+        let eventMask = (1 << CGEventType.scrollWheel.rawValue)
+
+        // Store self in a pointer for the callback
+        let refcon = UnsafeMutableRawPointer(Unmanaged.passUnretained(self).toOpaque())
+
+        guard let tap = CGEvent.tapCreate(
+            tap: .cgSessionEventTap,
+            place: .headInsertEventTap,
+            options: .defaultTap,  // Can modify/block events
+            eventsOfInterest: CGEventMask(eventMask),
+            callback: { proxy, type, event, refcon -> Unmanaged<CGEvent>? in
+                guard let refcon = refcon else {
+                    return Unmanaged.passRetained(event)
+                }
+                let handler = Unmanaged<GestureHandler>.fromOpaque(refcon).takeUnretainedValue()
+                return handler.handleCGEvent(proxy: proxy, type: type, event: event)
+            },
+            userInfo: refcon
+        ) else {
+            print("Failed to create event tap for gestures")
+            return
         }
 
-        // Also monitor local events (when app is focused)
-        localEventMonitor = NSEvent.addLocalMonitorForEvents(matching: .scrollWheel) { [weak self] event in
-            self?.handleScrollEvent(event)
-            return event
+        eventTap = tap
+        runLoopSource = CFMachPortCreateRunLoopSource(kCFAllocatorDefault, tap, 0)
+
+        if let source = runLoopSource {
+            CFRunLoopAddSource(CFRunLoopGetCurrent(), source, .commonModes)
         }
 
-        print("Gesture monitoring enabled")
+        CGEvent.tapEnable(tap: tap, enable: true)
+        print("Gesture event tap enabled")
     }
 
-    private func handleScrollEvent(_ event: NSEvent) {
-        // Only process gestures when in scanning mode (Ctrl held)
-        // This prevents accidental swipes during normal usage
-        if let controller = scanningModeController, controller.mode != .scanning {
-            return
+    private func handleCGEvent(proxy: CGEventTapProxy, type: CGEventType, event: CGEvent) -> Unmanaged<CGEvent>? {
+        // If not in scanning mode, pass event through unchanged
+        guard let controller = scanningModeController, controller.mode == .scanning else {
+            return Unmanaged.passRetained(event)
         }
 
-        let deltaX = event.scrollingDeltaX
-        let deltaY = event.scrollingDeltaY
-        let phase = event.phase
-        let momentumPhase = event.momentumPhase
+        // Convert to NSEvent for easier handling
+        guard let nsEvent = NSEvent(cgEvent: event) else {
+            return Unmanaged.passRetained(event)
+        }
 
-        // Only handle horizontal gestures
+        let deltaX = nsEvent.scrollingDeltaX
+        let deltaY = nsEvent.scrollingDeltaY
+        let phase = nsEvent.phase
+        let momentumPhase = nsEvent.momentumPhase
+
+        // Only handle horizontal gestures - pass vertical through
         guard abs(deltaX) > abs(deltaY) else {
-            return
+            return Unmanaged.passRetained(event)
         }
 
         let isTouchpad = !phase.isEmpty || !momentumPhase.isEmpty
-        let timestamp = event.timestamp
+        let timestamp = nsEvent.timestamp
 
         // Handle momentum phase (inertia after finger lifts)
-        // This provides smooth deceleration when the user releases the trackpad
         if !momentumPhase.isEmpty {
             switch momentumPhase {
-            case .began:
-                // Momentum started - continue the gesture with inertial scrolling
-                // The gesture should already be active from the touch phase
-                layoutEngine?.scrollingSpace?.viewOffsetGestureUpdate(
-                    deltaX: deltaX,
-                    timestamp: timestamp
-                )
-
-            case .changed:
-                // Momentum continuing - update with decelerating deltas
+            case .began, .changed:
                 layoutEngine?.scrollingSpace?.viewOffsetGestureUpdate(
                     deltaX: deltaX,
                     timestamp: timestamp
                 )
 
             case .ended, .cancelled:
-                // Momentum ended - finalize the gesture
                 layoutEngine?.scrollingSpace?.viewOffsetGestureEnd(cancelled: momentumPhase == .cancelled)
 
             default:
                 break
             }
-            return
+            // Block the event - don't pass to windows
+            return nil
         }
 
         // Handle touch phase (direct finger contact)
@@ -89,9 +105,6 @@ class GestureHandler {
             )
 
         case .ended:
-            // Don't end gesture here - wait for momentum phase if it will come
-            // The momentum phase will handle the smooth deceleration
-            // If no momentum follows, we'll snap immediately
             layoutEngine?.scrollingSpace?.viewOffsetGestureEnd(cancelled: false)
 
         case .cancelled:
@@ -108,14 +121,17 @@ class GestureHandler {
                 layoutEngine?.scrollingSpace?.viewOffsetGestureEnd(cancelled: false)
             }
         }
+
+        // Block the event - don't pass to windows
+        return nil
     }
 
     deinit {
-        if let monitor = gestureMonitor {
-            NSEvent.removeMonitor(monitor)
+        if let tap = eventTap {
+            CGEvent.tapEnable(tap: tap, enable: false)
         }
-        if let monitor = localEventMonitor {
-            NSEvent.removeMonitor(monitor)
+        if let source = runLoopSource {
+            CFRunLoopRemoveSource(CFRunLoopGetCurrent(), source, .commonModes)
         }
     }
 }

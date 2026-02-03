@@ -345,21 +345,14 @@ class ScrollingSpace {
     }
 
     /// Compute snap points for all column boundaries
-    /// Centers each column on screen
+    /// Each snap point centers that column on screen
     private func computeSnapPoints() -> [Double] {
         var points: [Double] = []
-        var x: Double = 0
 
-        for column in columns {
-            let columnWidth = calculateColumnWidth(column, totalColumns: columns.count)
-
-            // Snap point centers the column on screen
-            let centerOffset = (Double(workingArea.width) - Double(columnWidth)) / 2.0
-            let snapPoint = x - centerOffset
-
+        for i in 0..<columns.count {
+            // Use the same calculation as viewOffsetToCenter
+            let snapPoint = viewOffsetToCenter(columnIndex: i)
             points.append(snapPoint)
-
-            x += Double(columnWidth + gaps)
         }
 
         return points

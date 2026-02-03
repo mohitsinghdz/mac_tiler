@@ -5,48 +5,48 @@ import CoreGraphics
 extension ScrollingSpace {
 
     /// Apply current layout with view offset (scrolling)
+    /// All windows move together as a horizontal strip
     func applyLayout(animate: Bool = true) {
         guard !columns.isEmpty else { return }
 
-        let viewOffset = viewPos()
+        let currentViewOffset = viewPos()
         let numColumns = columns.count
-        var x: Double = -viewOffset  // Apply scroll offset
+
+        // Start position: workingArea.minX offset by viewOffset
+        // All windows move together based on viewOffset
+        var x: Double = Double(workingArea.minX) - currentViewOffset
 
         for column in columns {
             // Calculate column width
             let columnWidth = calculateColumnWidth(column, totalColumns: numColumns)
 
-            // Constrain to screen bounds with margin
-            let constrainedX = constrainColumnX(x: x, width: Double(columnWidth))
-
-            // Tile windows within column at constrained position
-            tileColumn(column, x: CGFloat(constrainedX), width: columnWidth, animate: animate)
+            // Position window at x (no constraints during scrolling - all move together)
+            tileColumn(column, x: CGFloat(x), width: columnWidth, animate: animate)
 
             x += Double(columnWidth + gaps)
         }
     }
 
-    /// Constrain column X position to keep it partially visible
-    /// Only applies if column would go fully off-screen
-    private func constrainColumnX(x: Double, width: Double) -> Double {
-        let screenLeft = Double(workingArea.minX)
-        let screenRight = Double(workingArea.maxX)
+    /// Calculate the view offset needed to center a specific column
+    func viewOffsetToCenter(columnIndex: Int) -> Double {
+        guard columnIndex >= 0 && columnIndex < columns.count else { return 0 }
 
-        // Calculate column boundaries
-        let columnLeft = x
-        let columnRight = x + width
-
-        // If fully off left edge, clamp to show screenMargin pixels
-        if columnRight < screenLeft {
-            return screenLeft - width + Double(screenMargin)
+        var x: Double = 0
+        for i in 0..<columnIndex {
+            let columnWidth = calculateColumnWidth(columns[i], totalColumns: columns.count)
+            x += Double(columnWidth + gaps)
         }
 
-        // If fully off right edge, clamp to show screenMargin pixels
-        if columnLeft > screenRight {
-            return screenRight - Double(screenMargin)
-        }
+        // Calculate offset to center this column
+        let columnWidth = calculateColumnWidth(columns[columnIndex], totalColumns: columns.count)
+        let centerOffset = (Double(workingArea.width) - Double(columnWidth)) / 2.0
 
-        // Column is at least partially visible, don't constrain
-        return x
+        return x - centerOffset
+    }
+
+    /// Center the active column immediately (used when entering scanning mode)
+    func centerActiveColumn() {
+        let targetOffset = viewOffsetToCenter(columnIndex: activeColumnIdx)
+        viewOffset = .static(targetOffset)
     }
 }

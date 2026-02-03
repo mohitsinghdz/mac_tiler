@@ -42,8 +42,9 @@ class LayoutEngine {
         scanningModeController.onModeChange = { [weak self] mode in
             switch mode {
             case .scanning:
-                // Could show visual indicator here if desired
-                break
+                // Center the active window when entering scanning mode
+                self?.scrollingSpace?.centerActiveColumn()
+                self?.scrollingSpace?.applyLayout(animate: false)
             case .normal:
                 // Ensure any in-progress gesture snaps to nearest column
                 if let space = self?.scrollingSpace, space.viewOffset.isGesture {
