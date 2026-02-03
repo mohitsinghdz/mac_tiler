@@ -1,4 +1,4 @@
-# Niri for macOS
+# Mac Tiler
 
 A native macOS window manager with smooth physics-based scrolling tiling.
 
@@ -29,7 +29,7 @@ A native macOS window manager with smooth physics-based scrolling tiling.
 ## Building
 
 ```bash
-cd NiriMacOS
+cd MacTiler
 swift build -c release
 ```
 

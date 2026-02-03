@@ -6,22 +6,27 @@ extension ScrollingSpace {
 
     /// Apply current layout with view offset (scrolling)
     /// All windows move together as a horizontal strip
+    /// Windows in active column also respond to vertical offset
     func applyLayout(animate: Bool = true) {
         guard !columns.isEmpty else { return }
 
         let currentViewOffset = viewPos()
+        let currentVerticalOffset = verticalViewPos()
         let numColumns = columns.count
 
         // Start position: workingArea.minX offset by viewOffset
         // All windows move together based on viewOffset
         var x: Double = Double(workingArea.minX) - currentViewOffset
 
-        for column in columns {
+        for (colIdx, column) in columns.enumerated() {
             // Calculate column width
             let columnWidth = calculateColumnWidth(column, totalColumns: numColumns)
 
-            // Position window at x (no constraints during scrolling - all move together)
-            tileColumn(column, x: CGFloat(x), width: columnWidth, animate: animate)
+            // Only apply vertical offset to the active column
+            let vOffset = (colIdx == activeColumnIdx) ? currentVerticalOffset : 0.0
+
+            // Position window at x with vertical offset
+            tileColumn(column, x: CGFloat(x), width: columnWidth, verticalOffset: vOffset, animate: animate)
 
             x += Double(columnWidth + gaps)
         }

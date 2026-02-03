@@ -17,7 +17,7 @@ enum WindowHeight: Equatable {
 /// A column of tiled windows
 class Column {
     var tiles: [Window]
-    private(set) var activeWindowIdx: Int
+    var activeWindowIdx: Int
     var width: ColumnWidth
 
     // Per-window metadata

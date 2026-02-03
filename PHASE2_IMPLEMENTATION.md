@@ -343,13 +343,13 @@ The core algorithms are identical. Simplifications are only in edge cases like m
 ## Build & Run
 
 ```bash
-cd /Users/mohitsingh/Work/niri/NiriMacOS
+cd /Users/mohitsingh/Work/niri/MacTiler
 
 # Build
 swift build -c release
 
 # Run
-.build/release/NiriMacOS
+.build/release/MacTiler
 
 # Try it out:
 # 1. Open multiple windows (Safari, Terminal, etc.)

@@ -1,7 +1,7 @@
 import Cocoa
 import ApplicationServices
 
-class NiriApp: NSObject, NSApplicationDelegate {
+class MacTilerApp: NSObject, NSApplicationDelegate {
     var windowObserver: WindowObserver?
     var layoutEngine: LayoutEngine?
     var animationEngine: AnimationEngine?
@@ -29,7 +29,7 @@ class NiriApp: NSObject, NSApplicationDelegate {
         gestureHandler?.setupGestureMonitoring()
         startDisplayLink()
 
-        print("NiriMacOS started successfully")
+        print("Mac Tiler started successfully")
     }
 
     func checkAccessibilityPermissions() -> Bool {
@@ -41,7 +41,7 @@ class NiriApp: NSObject, NSApplicationDelegate {
         let alert = NSAlert()
         alert.messageText = "Accessibility Permission Required"
         alert.informativeText = """
-        NiriMacOS needs Accessibility permissions to manage windows.
+        Mac Tiler needs Accessibility permissions to manage windows.
 
         Please grant permission in System Settings > Privacy & Security > Accessibility
         """
@@ -66,7 +66,7 @@ class NiriApp: NSObject, NSApplicationDelegate {
             _ flagsOut: UnsafeMutablePointer<CVOptionFlags>,
             _ context: UnsafeMutableRawPointer?
         ) -> CVReturn {
-            let app = Unmanaged<NiriApp>.fromOpaque(context!).takeUnretainedValue()
+            let app = Unmanaged<MacTilerApp>.fromOpaque(context!).takeUnretainedValue()
 
             DispatchQueue.main.async {
                 app.animationEngine?.tick()
@@ -88,6 +88,6 @@ class NiriApp: NSObject, NSApplicationDelegate {
 
 // Entry point
 let app = NSApplication.shared
-let delegate = NiriApp()
+let delegate = MacTilerApp()
 app.delegate = delegate
 app.run()

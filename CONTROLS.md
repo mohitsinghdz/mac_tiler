@@ -1,4 +1,4 @@
-# NiriMacOS Controls Guide
+# Mac Tiler Controls Guide
 
 ## Current Controls (Phase 2)
 
@@ -61,7 +61,7 @@ If you don't see these, gestures aren't being detected.
 
 ### 2. Check Accessibility Permissions
 
-System Settings → Privacy & Security → Accessibility → NiriMacOS ✓
+System Settings → Privacy & Security → Accessibility → Mac Tiler ✓
 
 ### 3. Check Window Count
 
@@ -106,7 +106,7 @@ We'll add these keyboard commands for testing:
 
 ```bash
 # Run the app
-.build/release/NiriMacOS
+.build/release/MacTiler
 
 # Open 5-6 windows
 # - Safari: Cmd+Space → "Safari" → Enter

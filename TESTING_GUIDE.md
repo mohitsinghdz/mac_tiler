@@ -28,13 +28,13 @@
 ### 1. Build and Run with Debug Output
 
 ```bash
-cd /Users/mohitsingh/Work/niri/NiriMacOS
+cd /Users/mohitsingh/Work/niri/MacTiler
 
 # Build
 swift build -c release
 
 # Run (you'll see debug output in terminal)
-.build/release/NiriMacOS
+.build/release/MacTiler
 ```
 
 Keep the terminal visible to see debug output!

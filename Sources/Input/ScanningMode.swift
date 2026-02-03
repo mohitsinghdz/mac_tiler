@@ -66,13 +66,13 @@ class ScanningModeController {
 
     private func enterScanningMode() {
         mode = .scanning
-        NSLog("NiriMacOS: Entered scanning mode (Ctrl held)")
+        NSLog("Mac Tiler: Entered scanning mode (Ctrl held)")
         onModeChange?(.scanning)
     }
 
     private func exitScanningMode() {
         mode = .normal
-        NSLog("NiriMacOS: Exited scanning mode (Ctrl released)")
+        NSLog("Mac Tiler: Exited scanning mode (Ctrl released)")
         onModeChange?(.normal)
     }
 

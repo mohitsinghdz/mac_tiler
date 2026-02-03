@@ -1,6 +1,13 @@
 import Cocoa
 import CoreGraphics
 
+/// Scroll direction being tracked during a gesture
+private enum ScrollDirection {
+    case undetermined
+    case horizontal
+    case vertical
+}
+
 /// Handles touchpad and mouse gestures
 class GestureHandler {
     private weak var layoutEngine: LayoutEngine?
@@ -9,6 +16,9 @@ class GestureHandler {
 
     /// Reference to scanning mode controller for checking mode
     weak var scanningModeController: ScanningModeController?
+
+    /// Current scroll direction (locked once determined during a gesture)
+    private var scrollDirection: ScrollDirection = .undetermined
 
     init(layoutEngine: LayoutEngine) {
         self.layoutEngine = layoutEngine
@@ -66,25 +76,59 @@ class GestureHandler {
         let phase = nsEvent.phase
         let momentumPhase = nsEvent.momentumPhase
 
-        // Only handle horizontal gestures - pass vertical through
-        guard abs(deltaX) > abs(deltaY) else {
-            return Unmanaged.passRetained(event)
-        }
-
         let isTouchpad = !phase.isEmpty || !momentumPhase.isEmpty
         let timestamp = nsEvent.timestamp
+
+        // Determine scroll direction at gesture begin (with hysteresis)
+        if phase == .began || (phase.isEmpty && momentumPhase.isEmpty && scrollDirection == .undetermined) {
+            scrollDirection = .undetermined
+        }
+
+        // Lock in direction once determined (prevents diagonal jitter)
+        if scrollDirection == .undetermined {
+            let absX = abs(deltaX)
+            let absY = abs(deltaY)
+
+            // Use hysteresis to determine dominant direction
+            if absX > absY * 1.5 {
+                scrollDirection = .horizontal
+            } else if absY > absX * 1.5 {
+                scrollDirection = .vertical
+            } else if absX > 1.0 || absY > 1.0 {
+                // If both similar magnitude, pick the larger one
+                scrollDirection = absX > absY ? .horizontal : .vertical
+            }
+        }
+
+        // If direction still undetermined (very small deltas), pass through
+        guard scrollDirection != .undetermined else {
+            return Unmanaged.passRetained(event)
+        }
 
         // Handle momentum phase (inertia after finger lifts)
         if !momentumPhase.isEmpty {
             switch momentumPhase {
             case .began, .changed:
-                layoutEngine?.scrollingSpace?.viewOffsetGestureUpdate(
-                    deltaX: deltaX,
-                    timestamp: timestamp
-                )
+                if scrollDirection == .horizontal {
+                    layoutEngine?.scrollingSpace?.viewOffsetGestureUpdate(
+                        deltaX: deltaX,
+                        timestamp: timestamp
+                    )
+                } else {
+                    layoutEngine?.scrollingSpace?.verticalOffsetGestureUpdate(
+                        deltaY: deltaY,
+                        timestamp: timestamp
+                    )
+                }
 
             case .ended, .cancelled:
-                layoutEngine?.scrollingSpace?.viewOffsetGestureEnd(cancelled: momentumPhase == .cancelled)
+                let cancelled = momentumPhase == .cancelled
+                if scrollDirection == .horizontal {
+                    layoutEngine?.scrollingSpace?.viewOffsetGestureEnd(cancelled: cancelled)
+                } else {
+                    layoutEngine?.scrollingSpace?.verticalOffsetGestureEnd(cancelled: cancelled)
+                }
+                scrollDirection = .undetermined
 
             default:
                 break
@@ -96,29 +140,60 @@ class GestureHandler {
         // Handle touch phase (direct finger contact)
         switch phase {
         case .began:
-            layoutEngine?.scrollingSpace?.viewOffsetGestureBegin(isTouchpad: isTouchpad)
+            if scrollDirection == .horizontal {
+                layoutEngine?.scrollingSpace?.viewOffsetGestureBegin(isTouchpad: isTouchpad)
+            } else {
+                layoutEngine?.scrollingSpace?.verticalOffsetGestureBegin(isTouchpad: isTouchpad)
+            }
 
         case .changed:
-            layoutEngine?.scrollingSpace?.viewOffsetGestureUpdate(
-                deltaX: deltaX,
-                timestamp: timestamp
-            )
-
-        case .ended:
-            layoutEngine?.scrollingSpace?.viewOffsetGestureEnd(cancelled: false)
-
-        case .cancelled:
-            layoutEngine?.scrollingSpace?.viewOffsetGestureEnd(cancelled: true)
-
-        default:
-            // Handle mouse scroll (no phases)
-            if phase.isEmpty && momentumPhase.isEmpty {
-                layoutEngine?.scrollingSpace?.viewOffsetGestureBegin(isTouchpad: false)
+            if scrollDirection == .horizontal {
                 layoutEngine?.scrollingSpace?.viewOffsetGestureUpdate(
                     deltaX: deltaX,
                     timestamp: timestamp
                 )
+            } else {
+                layoutEngine?.scrollingSpace?.verticalOffsetGestureUpdate(
+                    deltaY: deltaY,
+                    timestamp: timestamp
+                )
+            }
+
+        case .ended:
+            if scrollDirection == .horizontal {
                 layoutEngine?.scrollingSpace?.viewOffsetGestureEnd(cancelled: false)
+            } else {
+                layoutEngine?.scrollingSpace?.verticalOffsetGestureEnd(cancelled: false)
+            }
+            scrollDirection = .undetermined
+
+        case .cancelled:
+            if scrollDirection == .horizontal {
+                layoutEngine?.scrollingSpace?.viewOffsetGestureEnd(cancelled: true)
+            } else {
+                layoutEngine?.scrollingSpace?.verticalOffsetGestureEnd(cancelled: true)
+            }
+            scrollDirection = .undetermined
+
+        default:
+            // Handle mouse scroll (no phases)
+            if phase.isEmpty && momentumPhase.isEmpty {
+                if scrollDirection == .horizontal {
+                    layoutEngine?.scrollingSpace?.viewOffsetGestureBegin(isTouchpad: false)
+                    layoutEngine?.scrollingSpace?.viewOffsetGestureUpdate(
+                        deltaX: deltaX,
+                        timestamp: timestamp
+                    )
+                    layoutEngine?.scrollingSpace?.viewOffsetGestureEnd(cancelled: false)
+                } else {
+                    layoutEngine?.scrollingSpace?.verticalOffsetGestureBegin(isTouchpad: false)
+                    layoutEngine?.scrollingSpace?.verticalOffsetGestureUpdate(
+                        deltaY: deltaY,
+                        timestamp: timestamp
+                    )
+                    layoutEngine?.scrollingSpace?.verticalOffsetGestureEnd(cancelled: false)
+                }
+                scrollDirection = .undetermined
             }
         }
 

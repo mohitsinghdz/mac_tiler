@@ -2,20 +2,20 @@
 import PackageDescription
 
 let package = Package(
-    name: "NiriMacOS",
+    name: "MacTiler",
     platforms: [
         .macOS(.v13)
     ],
     products: [
         .executable(
-            name: "NiriMacOS",
-            targets: ["NiriMacOS"]
+            name: "MacTiler",
+            targets: ["MacTiler"]
         )
     ],
     dependencies: [],
     targets: [
         .executableTarget(
-            name: "NiriMacOS",
+            name: "MacTiler",
             dependencies: [],
             path: "Sources",
             resources: [
@@ -23,8 +23,8 @@ let package = Package(
             ]
         ),
         .testTarget(
-            name: "NiriMacOSTests",
-            dependencies: ["NiriMacOS"],
+            name: "MacTilerTests",
+            dependencies: ["MacTiler"],
             path: "Tests"
         )
     ]
